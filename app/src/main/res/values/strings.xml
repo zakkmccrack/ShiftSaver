@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ShiftSaver</string>
+    <string name="buttonNewText">New Month</string>
+    <string name="buttonNewShiftText">New Shift</string>
+    <string name="addShiftEditDateHint">Date (dd/mm/aaaa)</string>
+    <string name="addShiftEditStartTimeHint">Start time (hh:mm)</string>
+    <string name="addShiftEditEndTimeHint">End time (hh:mm)</string>
+
+    <string name="monthViewText">Month Year</string>
+    <string name="shiftItemView">dd/mm/aaaa — hh:mm-hh:mm | hh</string>
+</resources>
