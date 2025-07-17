@@ -3,14 +3,17 @@ package com.example.shiftsaver
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shiftsaver.data.entity.MonthEntity
 import com.example.shiftsaver.ui.MonthAdapter
 import com.example.shiftsaver.ui.MonthDetailActivity
 import com.example.shiftsaver.viewmodel.MonthListViewModel
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import kotlin.getValue
 
@@ -50,8 +53,14 @@ class MainActivity : ComponentActivity() {
         }
 
         addButton.setOnClickListener {
-            val today = LocalDate.now()
-            viewModel.addMonth(today.year, today.monthValue)
+            lifecycleScope.launch {
+                val today = LocalDate.now()
+                if (viewModel.getMonthByNameDao(today.monthValue, today.year) == null) {
+                    viewModel.addMonth(today.year, today.monthValue)
+                } else{
+                    Toast.makeText(this@MainActivity, "Mese già esistente", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
     private fun confirmDeleteMonth(month: MonthEntity) {

@@ -25,4 +25,8 @@ class MonthListViewModel(application: Application) : AndroidViewModel(applicatio
             shiftDao.deleteAllForMonth(monthId)
         }
     }
+
+    suspend fun getMonthByNameDao(month: Int, year: Int): MonthEntity? {
+        return monthDao.getMonthByName(month, year)
+    }
 }

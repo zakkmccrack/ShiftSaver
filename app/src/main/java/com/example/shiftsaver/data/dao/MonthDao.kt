@@ -19,6 +19,9 @@ interface MonthDao {
     @Query("SELECT * FROM months WHERE id = :id LIMIT 1")
     suspend fun getMonthById(id: Int): MonthEntity?
 
+    @Query("SELECT * FROM months WHERE month = :month AND year = :year")
+    suspend fun getMonthByName(month: Int, year: Int): MonthEntity?
+
     @Delete
     suspend fun delete(workMonth: MonthEntity)
 
